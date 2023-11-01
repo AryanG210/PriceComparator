@@ -1,0 +1,38 @@
+{% extends "../base.html" %}
+{% block title %}Register{% endblock title %}
+
+
+{% block links %}
+{% load static %}
+<link rel="stylesheet" href="{% static "CSS/login_register.css" %}">
+{% endblock links %}
+
+{% block styles %}
+{% endblock styles %}
+
+
+{% block content %}
+<div class="main-page">
+    <div class="login-form">
+      <h3>Hello user!!</h3>
+      <form action='' method='post'>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="txt-field">
+                {% comment %} <p class='errors'>{{field.errors}}</p> {% endcomment %}
+                {{field}}  {{field.label_tag}}
+                {% comment %} {% if field.help_text %}
+                <p class="help">{{field.help_text|safe}}</p>
+                {% endif %} {% endcomment %}
+                <span></span>
+            </div>
+        {% endfor %}
+        <div class="register-btn">
+          <button type="submit">Register</button>
+        </div>
+      </form>
+      <p class='forgot'>Forgot password?</p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
