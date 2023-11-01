@@ -25,10 +25,13 @@ def login_page(request):
             return HttpResponseRedirect("/")
     else:
         form = AuthenticationForm()
-    return render(request, "accounts/login.html", {'form': form})
+        return render(request, "accounts/login.html", {'form': form})
 
 
 def logout_page(request):
     if request.method == "POST":
         logout(request)
         return HttpResponseRedirect("/")
+
+def profile(request):
+    return render(request,'profile.html')

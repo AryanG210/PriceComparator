@@ -1,0 +1,161 @@
+{% extends "../base.html" %}
+{% block title %}Login{% endblock title %}
+
+
+{% block styles %}
+<style>
+    .main-page{
+    }
+    .login-form{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: 0px 0px 20px -4px #C7AA8C;
+        padding:3rem 3rem;
+        border-radius: 20px;
+        background-color:#FFF6ED;
+
+    }
+    .flex{
+        display:flex;
+    }
+    .item-center{
+        align-items:center;
+    }
+    .content-center{
+        justify-content:center;
+    }
+    .login-form{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: 0px 0px 20px -4px #C7AA8C;
+        padding:3rem 3rem;
+        border-radius: 20px;
+    }
+    
+    .login-form h3{
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .txt-field{
+        border-bottom: 1px solid #c0c0c0;
+        position: relative;
+        margin:30px;
+    }
+    
+    .txt-field input{
+        width:100%;
+        padding:0 5px;
+        height:40px;
+        font-size: 16px;
+        border:none;
+    }
+    
+    .txt-field label{
+        position: absolute;
+        color:#adadad;
+        top:50%;
+        left:5px;
+        font-size:16px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: .3s;
+    }
+    
+    .txt-field span::before{
+        content:'';
+        position: absolute;
+        top: 40px;
+        left:0;
+        width: 0%;
+        height:2px;
+        background: #2691d9;
+        transition: 0.3s;
+    }
+    .txt-field input{
+        border: none;
+        outline:none;
+    }
+    
+    .txt-field input:autofill~label, 
+    .txt-field input:valid~label,
+    .txt-field input:focus~label{
+        top:-6px;
+        color: #2691d9;
+    }
+    
+    .txt-field input:autofill~span::before, 
+    .txt-field input:valid~span::before,
+    .txt-field input:focus~span::before{
+        width: 100%;
+    }
+    
+    .login-form button{
+        width: 70%;
+        padding: 0.3rem 0.5rem;
+        font-size: 1.2rem;
+        background:#9e6e57;
+        color:#fff;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+    
+    .forgot{
+        font-size: 0.8rem;
+        color: #2691d9;
+        cursor: pointer;
+    }
+    
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+<div class="main-page">
+    <div class="login-form">
+      <h3>Welcome Back!!</h3>
+      <form action='/login' method='post'>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="txt-field">
+                {{field.errors}}
+                {{field.label_tag}} {{field}}
+                {% if field.help_text %}
+                <p class="help">{{field.help_text|safe}}</p>
+                {% endif %}
+                <span></span>
+            </div>
+        {% endfor %}
+        {% comment %} 
+          <input
+            type="text"
+            name="Email"
+            id="Email"
+            required
+          />
+          <span></span>
+          <label htmlFor="Email">Email</label>
+        </div>
+        <div className="txt-field">
+          <input
+            type="password"
+            name="Password"
+            id="Password"
+            required
+          />
+          <span></span>
+          <label htmlFor="Password">Password</label>
+        </div> {% endcomment %}
+        <div class="flex items-center justify-center">
+          <button type="submit">Login</button>
+        </div>
+      </form>
+      <p class='forgot'>Forgot password?</p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+E-comparator
+{% endblock title %}
+
+
+{% block styles %}
+    .hello{
+        position:absolute;
+        top:90px;
+        right:28px;
+        font-size:1.4rem;
+        font-family:'Quicksand','sans-serif';
+    }
+{% endblock styles %}
+
+
+{% block content %}
+<span class="hello">Hello {{user}} !</span>
+{% endblock content %}
