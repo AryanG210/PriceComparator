@@ -9,27 +9,24 @@
 
 
 {% block content %}
-<div class="main-page">
-    <div class="login-form">
-      <h3>Welcome Back!!</h3>
-      <form action='/login' method='post'>
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="txt-field">
-                {% comment %} {{field.errors}} {% endcomment %}
-                {{field}} {{field.label_tag}}   
-                {% if field.help_text %}
-                <p class="help">{{field.help_text|safe}}</p>
-                {% endif %}
-                <span></span>
-            </div>
-        {% endfor %}
-        <div class="login-btn">
-          <button type="submit">Login</button>
-        </div>
-      </form>
-      <p class='forgot'>Forgot password?</p>
+<div class="mainPage">
+  <div class="login-form">
+    <h3>Welcome Back!!</h3>
+    <form action='/user/login/' method='POST'>
+      {% csrf_token %}
+      {% for field in form %}
+          <div class="txt-field">
+              {{field}} {{field.label_tag}}   
+              <span></span>
+          </div>
+      {% endfor %}
+      <div class="login-btn">
+        <button type="submit">Login</button>
       </div>
+    </form>
+    <p class='forgot'>Forgot password?</p>
     </div>
   </div>
+</div>
+
 {% endblock content %}

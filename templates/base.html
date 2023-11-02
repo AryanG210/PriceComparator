@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,48 +11,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'CSS/base.css' %}">
     {% block links %}{% endblock links %}
 </head>
 <style>
-    body{
-        margin:0;
-        padding:0;
-    }
-    .nav-desktop{
-        background-color:#000000;
-        display:flex;
-        padding: 5px 10px;
-        width:100vw;
-        align-items:center;
-        justify-content: space-between;
-        box-sizing:border-box;
-    }
-    .left-section{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        align-self:flex-start;
-        color: #ffffff;
-        font-size:1.5rem;
-        gap:20px;
-        font-family: 'Quicksand', 'sans-serif';
-    }
-    .right-section{
-        display: flex;
-        align-items:center;
-        justify-content:center;
-        align-self:flex-end;
-    }
-    .cursor-pointer{
-        cursor:pointer;
-    }
     {% block styles %}{% endblock styles %}
 </style>
 <body>
     <header>
     <nav class="nav-desktop">
         <div class="left-section">
-        {% load static %}
             <img src="{% static 'Logo.png' %}" alt="Logo" width='84px' height='71px' class='cursor-pointer'>
             <span class='cursor-pointer'>Home</span>
             <span class='cursor-pointer'>About</span>
@@ -61,7 +31,8 @@
             <img src="{% static 'images/Cart.svg' %}" alt="Cart" width='50px' height='50px' class='cursor-pointer'>
         </div>
     </nav>
-    {% block content %}{% endblock content %}
 </header>
+{% block content %}{% endblock content %}
+
 </body>
 </html>
