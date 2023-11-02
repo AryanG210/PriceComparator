@@ -41,7 +41,7 @@ E-comparator
     }
  
     .slider-container {
-        overflow: auto;
+        overflow: auto ;
         white-space: nowrap; 
     }
 
@@ -56,6 +56,13 @@ E-comparator
         border: 1px solid black;
         text-align: center;
         background-color: white;
+    }
+    .slider-container::-webkit-scrollbar {
+        width: 0.1rem;
+    }
+    
+    .slider-container::-webkit-scrollbar-thumb {
+        background-color: transparent;
     }
     
     
