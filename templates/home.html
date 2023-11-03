@@ -35,7 +35,7 @@ E-comparator
     .cat{
         color: black;
         text-align: center;
-        margin: 50px auto; /* Increase the top margin to move the box down */
+        margin: 25px auto; /* Increase the top margin to move the box down */
         width: 95%;
         font-family: 'Quicksand', 'sans-serif';
     }
@@ -63,6 +63,30 @@ E-comparator
     
     .slider-container::-webkit-scrollbar-thumb {
         background-color: transparent;
+    }
+    .half-box {
+        border: 2px solid black;
+        text-align: center;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px; /* Add border-radius to make the border round */
+        padding:4px;
+        font-family:'Quicksand','sans-serif';
+    }
+    .half-box img {
+        width:100%;
+        height:110px;
+        margin-bottom: 10px; /* Add some margin to separate the image and text */
+    }
+    .half-box-left {
+        text-align: left;
+        width: 150px;
+        height: 150px;
+        {% comment %} position: absolute; /* Set absolute position */ {% endcomment %}
+        bottom: 100; /* Align to the bottom */
+        left: 0; /* Align to the left */
     }
     
     
@@ -121,4 +145,13 @@ E-comparator
         </div>
     </div>
 </div>
+<div class="half-box">
+    <img src="{% static 'ps5.jpg' %}" alt="Half Cat" width='200px' height='100px' class='cursor-pointer'>
+    <div class="half-box-left">
+        <div>Title</div>
+        <div>hsdb asjdhas asdkjsad sjd asjkasd h asdjhd asdkjds asdjdaskj asdkjhasd  saddjhhj</div>
+        <div>Price: &#8377; 500</div>
+    </div>
+</div>
+
 {% endblock content %}
