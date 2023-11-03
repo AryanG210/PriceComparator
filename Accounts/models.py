@@ -1,17 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-class User(models.Model):
-    username = models.CharField(max_length=50)
-    email= models.EmailField(unique=True, blank=False)
-    password = models.CharField(max_length=100)
-    phone_number = models.BigIntegerField()
-    reset_token = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.username
-
 class Brands(models.Model):
     brand_name= models.CharField( max_length=100,primary_key=True)
     brand_logo =  models.ImageField( upload_to='images/Brands', height_field=None, width_field=None, max_length=None)
