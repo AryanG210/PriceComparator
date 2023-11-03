@@ -13,8 +13,144 @@ E-comparator
         font-size:1.4rem;
         font-family:'Quicksand','sans-serif';
     }
+    .box-mid{
+        background-color: #91E7F6;
+        color: black;
+        padding: 20px;
+        text-align: center;
+        margin: 50px auto; 
+        width: 35%;
+        border-radius: 10px;
+        font-family: 'Quicksand', 'sans-serif';
+
+    }
+
+    .box-mid h1::after {
+        content: "";
+        display: block;
+        width: 75%;
+        margin: 15px auto;
+        border-bottom: 2px solid black; 
+    }
+    .cat{
+        color: black;
+        text-align: center;
+        margin: 25px auto; /* Increase the top margin to move the box down */
+        width: 95%;
+        font-family: 'Quicksand', 'sans-serif';
+    }
+ 
+    .slider-container {
+        overflow: auto ;
+        white-space: nowrap; 
+    }
+
+    .slider {
+        display: flex;
+    }
+
+    .box {
+        flex: 0 0 25%; 
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid black;
+        text-align: center;
+        background-color: white;
+    }
+    .slider-container::-webkit-scrollbar {
+        width: 0.1rem;
+    }
+    
+    .slider-container::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+    .half-box {
+        border: 2px solid black;
+        text-align: center;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px; /* Add border-radius to make the border round */
+        padding:4px;
+        font-family:'Quicksand','sans-serif';
+    }
+    .half-box img {
+        width:100%;
+        height:110px;
+        margin-bottom: 10px; /* Add some margin to separate the image and text */
+    }
+    .half-box-left {
+        text-align: left;
+        width: 150px;
+        height: 150px;
+        {% comment %} position: absolute; /* Set absolute position */ {% endcomment %}
+        bottom: 100; /* Align to the bottom */
+        left: 0; /* Align to the left */
+    }
+    
+    
+
 {% endblock styles %}
 
 {% block content %}
 <span class="hello">Hello {{user}} !</span>
+<div class="box-mid">
+    <h1>E-Comparator</h1>
+    <p>Want something but it getting out of your pockets? Get the best deals with us</p>
+</div>
+
+<div class="cat">
+    <h1>Categories</h1>
+    <div class="slider-container">
+        <div class="slider">
+            {% load static %}
+            <div class="box">
+                <p>Shoe</p>
+                <img src="{% static 'image1.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Dress</p>
+                <img src="{% static 'image2.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Heel</p>
+                <img src="{% static 'image3.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Camera</p>
+                <img src="{% static 'image4.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Computer</p>
+                <img src="{% static 'image5.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Watch</p>
+                <img src="{% static 'image6.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Phone</p>
+                <img src="{% static 'image7.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Balls</p>
+                <img src="{% static 'image8.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+            <div class="box">
+                <p>Purses</p>
+                <img src="{% static 'image9.png' %}" alt="Cat" width='84px' height='71px' class='cursor-pointer'>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="half-box">
+    <img src="{% static 'ps5.jpg' %}" alt="Half Cat" width='200px' height='100px' class='cursor-pointer'>
+    <div class="half-box-left">
+        <div>Title</div>
+        <div>hsdb asjdhas asdkjsad sjd asjkasd h asdjhd asdkjds asdjdaskj asdkjhasd  saddjhhj</div>
+        <div>Price: &#8377; 500</div>
+    </div>
+</div>
+
 {% endblock content %}
