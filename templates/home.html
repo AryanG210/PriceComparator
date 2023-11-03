@@ -90,6 +90,7 @@ E-comparator
     }
     
     
+    
 
 {% endblock styles %}
 
@@ -144,12 +145,26 @@ E-comparator
         </div>
     </div>
 </div>
-<div class="half-box">
+{% comment %} <div class="half-box">
     <img src="{% static 'ps5.jpg' %}" alt="Half Cat" width='200px' height='100px' class='cursor-pointer'>
     <div class="half-box-left">
         <div>Title</div>
         <div>hsdb asjdhas asdkjsad sjd asjkasd h asdjhd asdkjds asdjdaskj asdkjhasd  saddjhhj</div>
         <div>Price: &#8377; 500</div>
+    </div>
+</div> {% endcomment %}
+
+<div class="col-xs-3 col-sm-3 col-md-3">
+    <div class="card" style="width: 18rem;">
+      <img src='{% static "ps5.jpg" %}' alt="Half Cat" width='200px' height='150px' class="card-img-top" alt="...">
+      <img src='{% static "rating.png" %}' alt="Half Cat" width='50px' height='50px' class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p>Price: &#8377; 500</p>
+        <a href="#" class="btn btn-primary">Add To Cart</a>
+        <a href="#" class="btn btn-primary">Buy Now</a>
+      </div>
     </div>
 </div>
 
