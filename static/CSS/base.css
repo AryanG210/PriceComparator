@@ -33,3 +33,10 @@ body{
 .cursor-pointer{
     cursor:pointer;
 }
+
+#logout{
+    all: unset ;
+    background: #000000;
+    margin: 0;
+    padding: 0;
+}
