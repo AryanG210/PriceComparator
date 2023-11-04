@@ -29,10 +29,11 @@
 
 {% block content %}
 <div class="container">
-    <form action="">
+    <form action="/user/search/" method='post'>
     {% load static %}
+    {% csrf_token %}
     <img src="{% static 'images/Search.svg' %}" alt="" width='40' height='40'>
-    <input type="text" placeholder='Search'>
+    <input type="text" placeholder='Search' name='Search'>
 </form>
 </div>
 {% endblock content %}

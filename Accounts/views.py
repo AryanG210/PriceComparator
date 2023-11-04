@@ -10,7 +10,7 @@ fill the form again and the previous one will be voided. The submission of form 
 successfully redirects you to home page on register
 '''
 def register_page(request):
-    if User.is_authenticated:
+    if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -31,7 +31,7 @@ fill the form again and the previous one will be voided. The submission of form 
 successfully redirects you to home page on Login
 '''
 def login_page(request):
-    if User.is_authenticated:
+    if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
@@ -49,7 +49,8 @@ def login_page(request):
 '''
 This is served using a button that is added to the navbar at top to Log out the user. Currently 
 its a pending task in UI to make the button visible only if the user is logged in otherwise not.
-But hey the feature works for now and thats more important
+But hey the feature works for now and thats more important.
+Need to put a modal to confirm logout.
 '''
 def logout_page(request):
     if request.method == "POST":
@@ -67,4 +68,7 @@ def profile(request):
     return render(request,'profile.html')
 
 def search_page(request):
+    if request.method=='POST':
+        search_query = request.POST['Search']
+        print(search_query)
     return render(request, 'accounts/search_page.html')
