@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Search{% endblock title %}
 
@@ -20,6 +21,7 @@
     width:-moz-fit-content;
     width:fit-content;
     margin-top:30px;
+    margin-bottom:30px;
 }
 .container input{
     padding: 5px 10px;
@@ -29,22 +31,47 @@
     border: none;
     width:50vw;
 }
+.flex {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping of flex items */
+    justify-content: space-between; /* Adjust as needed */
+}
+.card{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.site-logo img {
+    height: 60px;
+    width: auto;
+    position: relative;
+    left: 170px;
+}
 {% endblock styles %}
 
 {% block content %}
 <div class="container">
     <form action="/user/search/" method='post'>
-    {% load static %}
-    {% csrf_token %}
+        {% load static %}
+        {% csrf_token %}
     <img src="{% static 'images/Search.svg' %}" alt="" width='40' height='40'>
     <input type="text" placeholder='Search' name='Search'>
 </form>
 </div>
 <div class='flex flex-wrap'>
-{% for product in products %}
-<div class="col-xs-3 col-sm-3 col-md-3">
-    <div class="card" style="width: 18rem">
-      <img src={{product.image}} alt="Half Cat" width='200px' height='150px' class="card-img-top" alt="..."></img>
+    {% for product in products %}
+    <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="card" style="width: 18rem">
+            {% if 'Amazon' in product.website %}
+            <div class="site-logo">
+                <img src="{% static 'amazon.png' %}" alt="Amazon Logo" width='100px' height='75px' class="card-img-top">
+            </div>
+            {% elif 'Flipkart' in product.website %}
+            <div class="site-logo">
+                <img src="{% static 'flipkart.png' %}" alt="Flipkart Logo" width='100px' height='75px' class="card-img-top">
+            </div>
+            {% endif %}
+            <img src={{product.image}} alt="Half Cat" width='200px' height='150px' class="card-img-top" alt="..."></img>
       <div class="card-body">
         <p class="card-text">{{product.name}}</p>
         <p>Price: &#8377; {{product.price}}</p>
