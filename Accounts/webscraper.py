@@ -19,22 +19,43 @@ def generate_amazon_search(search_string):
     products = soup.find_all('div',attrs={'data-component-type':'s-search-result'})
     product_obj=[]
     for product in products :
-        name = product.find("span",attrs={'class':'a-size-base-plus a-color-base a-text-normal'}).string
-        price = product.find("span",attrs={'class':'a-price-whole'}).string
-        image = product.find('div',attrs={'class':'a-section aok-relative s-image-square-aspect'}).find('img').get('src')
+        name = product.find("span",attrs={'class':'a-size-base-plus a-color-base a-text-normal'})
+        if name is not None:
+            name=name.string
+        else:
+            name=""
+        price = product.find("span",attrs={'class':'a-price-whole'})
+        if price is not None:
+            price = price.string
+            # price_text = price.get_text(strip=True)
+            # Remove the rupee symbol (₹) and convert to an integer
+            if price is not None:
+                price = price.replace(',', '')  # Remove commas
+                price = int(price)
+            else:
+                price=0
+        else:
+            price = 0
+        image = product.find('div',attrs={'class':'a-section aok-relative s-image-square-aspect'})
+        if image is not None:
+            image = image.find('img').get('src')
+        else:
+            image = ""
         rating = product.find('div',attrs={'class':'a-row a-size-small'})
-        product_link = product.find("a",attrs={'class':'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'}).get('href')
-        product_link = 'https://amazon.in/'+ product_link
         if rating is not None:
             rating = rating.find('span')
             rating = rating.get('aria-label')
             pattern = r'(\d+\.\d+)'
             # Extract the numeric value from each string
             rating = re.search(pattern, rating).group(1)
+        product_link = product.find("a",attrs={'class':'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'}).get('href')
+        product_link = 'https://amazon.in/'+ product_link
 
-        product_obj.append({'name':name,'price':price,'image':image,'rating':rating,'product_link':product_link})
+
+        product_obj.append({'name':name,'price':price,'image':image,'rating':rating,'product_link':product_link,'website':'Amazon'})
 
     return product_obj
+
 
 
 def generate_flipkart_search(search_string):
@@ -56,20 +77,27 @@ def generate_flipkart_search(search_string):
         price = product.find("div",attrs={'class':'_30jeq3'})
         if price is not None:
             price_text = price.get_text(strip=True)
-    # Remove the rupee symbol (₹) and convert to an integer
-            price = int(price_text.replace('₹', ''))
+            # Remove the rupee symbol (₹) and convert to an integer
+            price_text = price_text.replace('₹', '').replace(',', '')  # Remove commas
+            price = int(price_text)
         else:
-            price = 0 
+            price = 0
         link = "www.flipkart.com"+product.find("a",attrs={'class':'s1Q9rs'}).get('href')
 
-        image = product.find('div',attrs={'class':'CXW8mj _21_khk'}).find('img').get('src')
+        image = product.find('div', attrs={'class': 'CXW8mj'})
+        if image is not None:
+            image = image.find('img').get('src')
+        else:
+            image = ""
+
+        
         rating = product.find('div',attrs={'class':'_3LWZlK'})
 
         if rating is not None:
             rating = rating.get_text(strip=True)
         else:
             rating = "4"
-        product_obj.append({'name':name,'product_link':link,'price':price,'image':image,'rating':rating})
+        product_obj.append({'name':name,'product_link':link,'price':price,'image':image,'rating':rating,'product_link':link,'website':'Flipkart'})
 
     return product_obj
 

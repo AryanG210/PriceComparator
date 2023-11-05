@@ -8,6 +8,7 @@ from .webscraper import generate_amazon_search, generate_flipkart_search
 from .models import UserData
 from django.db.models import Q, Count,Sum
 from .forms import Register_form
+import random
 
 '''
 You can't access the register route if you are already logged in. Also in case of invalid forms you need to 
@@ -113,8 +114,15 @@ def profile(request):
 def search_page(request):
     if request.method=='POST':
         search_query = request.POST['Search']
-        amazon_products = generate_amazon_search(search_query)
         flipkart_products = generate_flipkart_search(search_query)
-        all_products = amazon_products.append(flipkart_products)
-        return render(request, 'accounts/search_page.html',context={'products':amazon_products})
+        flipkart_products= flipkart_products[:10]
+        amazon_products = generate_amazon_search(search_query)
+        amazon_products= amazon_products[:10]
+
+        products=amazon_products+flipkart_products
+        random.shuffle(products)
+
+        return render(request, 'accounts/search_page.html',context={'products':products})
+        # flipkart_products = generate_flipkart_search(search_query)
+        # all_products = amazon_products.append(flipkart_products)
     return render(request, 'accounts/search_page.html',context={'products':[]})
