@@ -10,7 +10,7 @@ def cart(request):
 
 def addToCart(request):
     if request.method =="POST":
-        print(request.POST.get('product'))
+        print(request.POST)
         print(request.body)
         # data = json.loads(request.body)
         # product = data.get('product')

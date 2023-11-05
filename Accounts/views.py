@@ -39,7 +39,7 @@ def register_page(request):
                     )
                     Udata.save()
 
-                    user = authenticate(request,email= form.clean_email(), password=form.clean_pswd())
+                    user = authenticate(request,username= form.clean_username(), password=form.clean_pswd())
                     if user is not None:
                         login(request,user)
                         return HttpResponseRedirect('/')
@@ -114,7 +114,7 @@ def search_page(request):
     if request.method=='POST':
         search_query = request.POST['Search']
         amazon_products = generate_amazon_search(search_query)
+        flipkart_products = generate_flipkart_search(search_query)
+        all_products = amazon_products.append(flipkart_products)
         return render(request, 'accounts/search_page.html',context={'products':amazon_products})
-        # flipkart_products = generate_flipkart_search(search_query)
-        # all_products = amazon_products.append(flipkart_products)
     return render(request, 'accounts/search_page.html',context={'products':[]})
