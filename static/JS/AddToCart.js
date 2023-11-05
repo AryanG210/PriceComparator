@@ -1,5 +1,4 @@
 function addToCart(product,csrf){
-    console.log(product)
     $.ajax({
         type: 'POST',
         url: '/cart/addtocart/',  // Replace with the actual URL

@@ -37,3 +37,12 @@ class Register_form(forms.Form):
     
     class Meta:
         model = User
+
+class Image_Form(forms.Form):
+    image_name = forms.CharField(max_length=50,required=True)
+    image = forms.ImageField()
+    
+    class Meta:
+        model = User
+
+

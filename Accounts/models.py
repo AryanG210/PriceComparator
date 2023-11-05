@@ -8,8 +8,8 @@ class UserData(models.Model):
     email = models.EmailField(null=False,unique=True)
     created_at = models.DateTimeField( auto_now_add=True)
 
-    def __str__(self) -> str:
-        return str.name
+    def __str__(self):
+        return self.name
 
 class Brands(models.Model):
     brand_name= models.CharField( max_length=100,primary_key=True)
@@ -29,3 +29,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+    
+class Images(models.Model):
+    image_name = models.CharField(max_length=50,null=False)
+    image = models.ImageField( upload_to='images/Products', height_field=None, width_field=None, max_length=None)
+
+    def __str__(self):
+        return self.image_name

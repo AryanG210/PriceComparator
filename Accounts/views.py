@@ -40,7 +40,7 @@ def register_page(request):
                     )
                     Udata.save()
 
-                    user = authenticate(request,email= form.clean_email(), password=form.clean_pswd())
+                    user = authenticate(request,username= form.clean_username(), password=form.clean_pswd())
                     if user is not None:
                         login(request,user)
                         return HttpResponseRedirect('/')
