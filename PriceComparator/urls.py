@@ -21,5 +21,5 @@ from django.urls import path,include
 urlpatterns = [
     path('',include('Home.urls')),
     path('cart/',include('Cart.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
 ]

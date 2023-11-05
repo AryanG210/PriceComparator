@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout,authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib import messages
+from .webscraper import generate_amazon_search, generate_flipkart_search
+from .models import UserData
+from django.db.models import Q, Count,Sum
+from .forms import Register_form
 
 '''
 You can't access the register route if you are already logged in. Also in case of invalid forms you need to 
@@ -13,16 +18,44 @@ def register_page(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = Register_form(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return HttpResponseRedirect("/")
+            if form.clean_pswd() == form.clean_conf_pswd():
+                curr_users = UserData.objects.filter(
+                    Q(email= form.clean_email())
+                )
+                if curr_users.all().count() == 0 :
+                    user = User.objects.create_user(
+                        form.clean_username(),
+                        form.clean_email(),
+                        form.clean_pswd()
+                    )
+                    user.first_name = form.clean_name()
+                    user.save()
+                    Udata = UserData.objects.create(
+                        user_id= user,
+                        email = user.email,
+                        name = user.first_name
+                    )
+                    Udata.save()
+
+                    user = authenticate(request,email= form.clean_email(), password=form.clean_pswd())
+                    if user is not None:
+                        login(request,user)
+                        return HttpResponseRedirect('/')
+                    else:
+                        messages.error(request,"Incorrect username/password")
+                else:
+                    print("Duplicate email")
+                    messages.error(request,"Duplicate email")
+            else:
+                print("The passwords does not match")
+                messages.error(request, "The passwords does not match")
         else:
-            return HttpResponseRedirect('/user/register')
-    else: 
-        form = UserCreationForm()
-        return render(request, "accounts/register.html", {'form': form})
+            messages.error(request,'Some error occured. Please try again')
+
+    form = Register_form()
+    return render(request, "accounts/register.html", {'form': form})
 
 
 '''
@@ -36,14 +69,24 @@ def login_page(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return HttpResponseRedirect("/")
+            username = request.POST['username']
+            password = request.POST['password']
+            try:
+                user = User.objects.get(username=username)
+            except:
+                messages.error(request, "User not found")
+            
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request,user)
+                return HttpResponseRedirect('/')
+            else:
+                messages.error(request,"Incorrect username/password")
         else:
-            return HttpResponseRedirect('/user/login')
-    else:
-        form = AuthenticationForm()
-        return render(request, "accounts/login.html", {'form': form})
+            messages.error(request, 'Some error occured. Please Try again')
+    
+    form = AuthenticationForm()
+    return render(request, "accounts/login.html", {'form': form})
     
 
 '''
@@ -70,5 +113,8 @@ def profile(request):
 def search_page(request):
     if request.method=='POST':
         search_query = request.POST['Search']
-        print(search_query)
-    return render(request, 'accounts/search_page.html')
+        amazon_products = generate_amazon_search(search_query)
+        return render(request, 'accounts/search_page.html',context={'products':amazon_products})
+        # flipkart_products = generate_flipkart_search(search_query)
+        # all_products = amazon_products.append(flipkart_products)
+    return render(request, 'accounts/search_page.html',context={'products':[]})

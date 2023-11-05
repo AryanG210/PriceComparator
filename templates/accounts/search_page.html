@@ -3,7 +3,9 @@
 {% block title %}Search{% endblock title %}
 
 {% block links %}
-
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'JS/AddToCart.js' %}"></script>
 {% endblock links %}
 
 {% block styles %}
@@ -13,17 +15,19 @@
     justify-content:center;
     font-family:'Quicksand','sans-serif';
     border: 1px solid black;
-    padding:3px;
-    border-radius: 10px;
+    padding:5px 20px;
+    border-radius: 100px;
+    width:-moz-fit-content;
     width:fit-content;
+    margin-top:30px;
 }
 .container input{
     padding: 5px 10px;
     border-radius:5px;
-    margin-top:30px;
     font-size: 1.5rem;
     outline:none;
     border: none;
+    width:50vw;
 }
 {% endblock styles %}
 
@@ -35,5 +39,21 @@
     <img src="{% static 'images/Search.svg' %}" alt="" width='40' height='40'>
     <input type="text" placeholder='Search' name='Search'>
 </form>
+</div>
+<div class='flex flex-wrap'>
+{% for product in products %}
+<div class="col-xs-3 col-sm-3 col-md-3">
+    <div class="card" style="width: 18rem">
+      <img src={{product.image}} alt="Half Cat" width='200px' height='150px' class="card-img-top" alt="..."></img>
+      <div class="card-body">
+        <p class="card-text">{{product.name}}</p>
+        <p>Price: &#8377; {{product.price}}</p>
+        <p>Rating: {{product.rating}}</p>
+        <button class="btn btn-primary" onClick='addToCart({{product}},"{{csrf_token}}")'>Add To Cart</button> 
+        <a href={{product.product_link}} class="btn btn-primary">Buy Now</a>
+      </div>
+    </div>
+</div>
+{% endfor %}
 </div>
 {% endblock content %}

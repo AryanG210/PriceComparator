@@ -84,14 +84,29 @@ E-comparator
         text-align: left;
         width: 150px;
         height: 150px;
-        {% comment %} position: absolute; /* Set absolute position */ {% endcomment %}
         bottom: 100; /* Align to the bottom */
         left: 0; /* Align to the left */
     }
-    
-    
-    
-
+    .container{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-family:'Quicksand','sans-serif';
+        border: 1px solid black;
+        padding:5px 20px;
+        border-radius: 100px;
+        width:-moz-fit-content;
+        width:fit-content;
+        margin-top:30px;
+    }
+    .container input{
+        padding: 5px 10px;
+        border-radius:5px;
+        font-size: 1.5rem;
+        outline:none;
+        border: none;
+        width:50vw;
+    }
 {% endblock styles %}
 
 {% block content %}
@@ -100,7 +115,14 @@ E-comparator
     <h1>E-Comparator</h1>
     <p>Want something but it getting out of your pockets? Get the best deals with us</p>
 </div>
-
+<div class="container">
+    <form action="/user/search/" method='post'>
+    {% load static %}
+    {% csrf_token %}
+    <img src="{% static 'images/Search.svg' %}" alt="" width='40' height='40'>
+    <input type="text" placeholder='Search' name='Search'>
+</form>
+</div>
 <div class="cat">
     <h1>Categories</h1>
     <div class="slider-container">
@@ -145,14 +167,6 @@ E-comparator
         </div>
     </div>
 </div>
-{% comment %} <div class="half-box">
-    <img src="{% static 'ps5.jpg' %}" alt="Half Cat" width='200px' height='100px' class='cursor-pointer'>
-    <div class="half-box-left">
-        <div>Title</div>
-        <div>hsdb asjdhas asdkjsad sjd asjkasd h asdjhd asdkjds asdjdaskj asdkjhasd  saddjhhj</div>
-        <div>Price: &#8377; 500</div>
-    </div>
-</div> {% endcomment %}
 
 <div class="col-xs-3 col-sm-3 col-md-3">
     <div class="card" style="width: 18rem;">
