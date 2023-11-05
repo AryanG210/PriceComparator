@@ -41,11 +41,55 @@
     margin-bottom:10px;
 }
 
-.site-logo img {
-    height: 60px;
+.top-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .site-logo img,
+  .rating img {
     width: auto;
-    position: relative;
-    left: 170px;
+    height:50px;
+    margin: 0; /* Remove left margin to align the logo and rating */
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating p {
+    margin: 0; /* Remove margin to align the rating text with the icon */
+  }
+.box-border {
+    border: 0.5px solid black;
+    margin: 10px; /* Add margin to create a gap between the product cards */
+    border-radius:10px;
+}
+.button-33 {
+  background-color: #c2fbd7;
+  border-radius: 10px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  margin-right:7px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-33:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }
 {% endblock styles %}
 
@@ -60,8 +104,9 @@
 </div>
 <div class='flex flex-wrap'>
     {% for product in products %}
-    <div class="col-xs-3 col-sm-3 col-md-3">
+    <div class="col-xs-3 col-sm-3 box-border">
         <div class="card" style="width: 18rem">
+            <div class="top-line">
             {% if 'Amazon' in product.website %}
             <div class="site-logo">
                 <img src="{% static 'amazon.png' %}" alt="Amazon Logo" width='100px' height='75px' class="card-img-top">
@@ -71,17 +116,21 @@
                 <img src="{% static 'flipkart.png' %}" alt="Flipkart Logo" width='100px' height='75px' class="card-img-top">
             </div>
             {% endif %}
+            <div class="rating">
+                <img src="{% static 'rating.png' %}" alt="Amazon Logo" width='100px' height='75px' class="card-img-top">
+                <p>{{product.rating}}</p>
+            </div>
+            </div>
             <img src={{product.image}} alt="Half Cat" width='200px' height='150px' class="card-img-top" alt="..."></img>
-      <div class="card-body">
-        <p class="card-text">{{product.name}}</p>
-        <p>Price: &#8377; {{product.price}}</p>
-        <p>Rating: {{product.rating}}</p>
-        <button class="btn btn-primary" onClick='addToCart({{product}},"{{csrf_token}}")'>Add To Cart</button> 
-        <a href={{product.product_link}} class="btn btn-primary">Buy Now</a>
-      </div>
+            <div class="card-body">
+                <p class="card-text">{{product.name}}</p>
+                <p>Price:<strong> &#8377; {{product.price}}</strong></p> 
+                <button class="button-33" role="button" onClick='addToCart({{product}},"{{csrf_token}}")'>Add To Cart</button> 
+                <button class="button-33" role="button" onclick="window.location.href='{{product.product_link}}'">Buy Now</button>
+            </div>
+        </div>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
 </div>
 {% endblock content %}
 {% block js %}
