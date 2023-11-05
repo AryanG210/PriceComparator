@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout,authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .webscraper import generate_amazon_search, generate_flipkart_search
+from .webscraper import generate_amazon_search, generate_flipkart_search,sorter
 from .models import UserData
 from django.db.models import Q, Count,Sum
 from .forms import Register_form
@@ -120,7 +120,7 @@ def search_page(request):
         amazon_products= amazon_products[:10]
 
         products=amazon_products+flipkart_products
-        random.shuffle(products)
+        products=sorter(products)
 
         return render(request, 'accounts/search_page.html',context={'products':products})
         # flipkart_products = generate_flipkart_search(search_query)

@@ -48,6 +48,8 @@ def generate_amazon_search(search_string):
             pattern = r'(\d+\.\d+)'
             # Extract the numeric value from each string
             rating = re.search(pattern, rating).group(1)
+        else:
+            rating="4"
         product_link = product.find("a",attrs={'class':'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'}).get('href')
         product_link = 'https://amazon.in/'+ product_link
 
@@ -82,7 +84,7 @@ def generate_flipkart_search(search_string):
             price = int(price_text)
         else:
             price = 0
-        link = "www.flipkart.com"+product.find("a",attrs={'class':'s1Q9rs'}).get('href')
+        link = "https://flipkart.com"+product.find("a",attrs={'class':'s1Q9rs'}).get('href')
 
         image = product.find('div', attrs={'class': 'CXW8mj'})
         if image is not None:
