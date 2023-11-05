@@ -21,11 +21,11 @@ class Brands(models.Model):
     
 class Product(models.Model):
     URL =  models.URLField(max_length=3000)
-    product_name = models.CharField( max_length=255)
+    product_name = models.CharField( max_length=1000)
     price = models.IntegerField()
-    discount = models.DecimalField(default=0,max_digits=4,decimal_places=2)
-    image = models.ImageField( upload_to='images/Products', height_field=None, width_field=None, max_length=None)
-    rating = models.IntegerField(default=0)
+    image = models.ImageField( upload_to='images/Products', height_field=None, width_field=None, max_length=1000)
+    rating = models.DecimalField(decimal_places=1,max_digits=2,default=0)
+    website= models.CharField( max_length=50)
 
     def __str__(self):
         return self.product_name
