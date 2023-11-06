@@ -12,6 +12,7 @@
 {% endblock links %}
 
 {% block styles %}
+/* Add this to your search_page.css or create a new CSS file */
 .cart-popup {
     display: none;
     position: fixed;
@@ -64,7 +65,6 @@
 .close-popup:hover {
     color: red; /* Change the color on hover */
 }
-
 {% endblock styles %}
 
 {% block content %}
@@ -77,7 +77,7 @@
     </form>
 </div>
 <div class="wrapper">
-<div class='flex flex-wrap content-evenly'>
+<div class='flex flex-wrap content-between'>
     {% for product in products %}
     <div class="flex flex-wrap content-between box-border">
         <div class="card">
@@ -102,15 +102,16 @@
                 <p>Price:<strong> &#8377; {{product.price}}</strong></p> 
             </div>
             <div class="btn-container">
-                <button class="button-33" role="button" onClick='addToCart({{product}},"{{csrf_token}}")'>
+                <button class="button-33" role="button" onClick='addToCart({{product}},"{{csrf_token}}"); showCartPopup();'>
                     Add To Cart
-                </button> 
+                </button>
                 <button class="button-33" role="button" onclick="window.location.href='{{product.product_link}}'">
                     Buy Now
                 </button>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 <div id="cartPopup" class="cart-popup">
     <div class="cart-popup-content">
