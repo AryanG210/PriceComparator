@@ -8,7 +8,7 @@ def Home(request):
 
     if request.user.is_authenticated:
         user = UserData.objects.filter(
-            Q(user_id=request.user.id)
+            Q(user_id=request.user.id)  
         ).first()
         if user is not None:
             name =user.name

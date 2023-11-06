@@ -1,8 +1,59 @@
 {% extends "base.html" %}
 
 {% block title %}Cart{% endblock title %}
+{% load static %}
 
+{% block styles %}
+.hello{
+    font-size:1.4rem;
+    font-family:'Quicksand','sans-serif';
+}
+.container{
+    margin:10px 10px;
+}
+.site-logo img {
+    height: 60px;
+    width: auto;
+    position: relative;
+    left: 170px;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping of flex items */
+    justify-content: space-between; /* Adjust as needed */
+}
+.card{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+{% endblock styles %}
 {% block content %}
-
+<div class="container">
+    <span class="hello">Hello {{user}} !</span>
+</div>
+<div class='flex flex-wrap'>
+    {% for item in items %}
+    <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="card" style="width: 18rem">
+            {% if 'Amazon' in item.website %}
+            <div class="site-logo">
+                <img src="{% static 'amazon.png' %}" alt="Amazon Logo" width='100px' height='75px' class="card-img-top">
+            </div>
+            {% elif 'Flipkart' in item.website %}
+            <div class="site-logo">
+                <img src="{% static 'flipkart.png' %}" alt="Flipkart Logo" width='100px' height='75px' class="card-img-top">
+            </div>
+            {% endif %} 
+            <img src={{item.image}} alt="Half Cat" width='200px' height='150px' class="card-img-top" alt="..."></img>
+        </div>
+      <div class="card-body">
+        <p class="card-text">{{item.product_name}}</p>
+        <p>Price: &#8377; {{item.price}}</p>
+        <p>Rating: {{item.rating}}</p>
+        <a href={{item.URL}} class="btn btn-primary">Buy Now</a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock content %}
 
