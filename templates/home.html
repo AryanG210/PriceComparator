@@ -57,6 +57,14 @@ E-comparator
         border: 1px solid black;
         text-align: center;
         background-color: white;
+        width:300px;
+    }
+    .box p{
+        font-size:2rem;
+    }
+    .box img{
+        width:200px;
+        aspect-ratio:1/1;
     }
     .SliderContainer::-webkit-scrollbar {
         width: 0.1rem;
@@ -64,6 +72,16 @@ E-comparator
     
     .SliderContainer::-webkit-scrollbar-thumb {
         background-color: transparent;
+    }
+    .SliderContainer a{
+        all:unset;
+        cursor:pointer;
+    }
+    .SliderContainer a:hover{
+        all:unset;
+    }
+    .SliderContainer a:active{
+        all:unset;
     }
     .half-box {
         border: 2px solid black;
@@ -126,13 +144,16 @@ E-comparator
 </div>
 <div class="cat">
     <h1>Categories</h1>
+
     <div class="SliderContainer">
         <div class="Slider">
             {% for image in images %}
-            <div class="box">
-                <p>{{image.image_name}}</p>
-                <img src='{{image.image.url}}' alt="Cat" width='84px' height='71px' class='cursor-pointer'></img>
-            </div>
+            <a href="category/{{image.image_name}}" class='cursor-pointer'>
+                <div class="box">
+                    <p>{{image.image_name}}</p>
+                    <img src='{{image.image.url}}' alt="Cat"></img>
+                </div>
+            </a>
             {% endfor %}
         </div>
     </div>
