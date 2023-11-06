@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+About
+{% endblock title %}
+
+{% block styles %}
+<style>
+    .centered-heading {
+        text-align: center;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background-color: #333; /* Add your desired background color */
+        color: white; /* Add your desired text color */
+        padding: 10px 0;
+    }
+    /* CSS for the content */
+    .content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .content h5 {
+        font-size: 1.2rem;
+        margin-top: 35px;
+    }
+    .content h1 {
+        text-align: center; /* Center the h1 tag */
+    }
+    .content p {
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+    .content h3 {
+        font-size: 1.4rem;
+        margin-top: 20px;
+    }
+    .content ul {
+        font-size: 1rem;
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<div class="content">
+    <h1 class="centered-heading">E-comparator</h1>
+    <h5>This project helps you to find a particular product from different websites</h5>
+    <p>You can search for the product of your choice, and the website will show the top products from Amazon and Flipkart shopping pages.</p>
+    <p>This is a brief description of how the system works and what users can expect when using it.</p>
+    <h3>Additional Features:</h3>
+    <ul>
+        <li>First, the user enters the homepage and searches for a product.</li>
+        <li>The website shows results from Amazon and Flipkart.</li>
+        <li>Here, the user can add products to his cart for later viewing or he can click on buy now to land on the webpage of that particular product.</li>
+    </ul>
+</div>
+<div>
+    <footer>
+        <h5>Web dev project made by Ayush Kumar and Aryan Gupta</h5>
+    </footer>
+</div>
+
+{% endblock content %}

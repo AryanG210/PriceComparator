@@ -17,6 +17,9 @@ def Home(request):
     context = {'user': name,'images':images} 
     return render(request,'home.html',context)
 
+def About(request):
+    return render(request,'about.html')
+
 def Category(request,cat):
     flipkart_products = generate_flipkart_search(cat)
     flipkart_products= flipkart_products[:15]
