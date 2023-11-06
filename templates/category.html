@@ -11,18 +11,8 @@
 <script src="{% static 'JS/CartControl.js' %}"></script>
 {% endblock links %}
 
-{% block styles %}
-{% endblock styles %}
 
 {% block content %}
-<div class="search-container">
-    <form action="/user/search/" method='post'>
-        {% load static %}
-        {% csrf_token %}
-    <img src="{% static 'images/Search.svg' %}" alt="" width='40' height='40'>
-    <input type="text" placeholder='Search' name='Search'>
-    </form>
-</div>
 <div class="wrapper">
 <div class='flex flex-wrap content-between'>
     {% for product in products %}
@@ -62,8 +52,3 @@
 </div>
 </div>
 {% endblock content %}
-{% block js %}
-<script>
-    console.log('working')
-</script>
-{% endblock js %}

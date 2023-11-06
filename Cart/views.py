@@ -11,10 +11,13 @@ def cart(request):
     if not User.is_authenticated :
         return HttpResponseRedirect('/user/login')
     user = User.objects.filter(Q(username=request.user.username)).all().first()
-    cart = Cart.objects.filter(Q(user_id=user)).all().values('product_id')
-    product_ids = [ x['product_id'] for x in cart ]
+    cart = Cart.objects.filter(Q(user_id=user)).all().values()
+    cart_ids = [ x['id'] for x in cart ]
+    product_ids = [ x['product_id_id'] for x in cart ]
     items = Product.objects.filter(id__in=product_ids)
     items=list(items.values())
+    for i in range(len(items)):
+        items[i]['cart_id'] = cart_ids[i]
     context = {'items':items, 'user':request.user.username}
     return render(request,'cart.html',context=context)
 
@@ -54,5 +57,13 @@ def addToCart(request):
 
 def DeleteFromCart(request,id):
     if request.user.is_authenticated:
-        Cart.objects.filter(Q(id=id)).delete()
-        messages.success(request,"Item removed from cart successfully. Refresh page to see changes")
+        if request.method =='DELETE':
+            try:
+                obj = Cart.objects.get(id=id).delete()
+            except:
+                return HttpResponse('Cannot delete product. Database Error')
+            messages.success(request,"Item removed from cart successfully. Refresh page to see changes")
+            return HttpResponse('Product Deleted successfully')
+        else:
+            return HttpResponse('Cannot delete product. Database Error')
+    return HttpResponse('Login to access the resource')

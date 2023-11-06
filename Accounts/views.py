@@ -1,14 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout,authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .webscraper import generate_amazon_search, generate_flipkart_search,sorter
 from .models import UserData
-from django.db.models import Q, Count,Sum
+from django.db.models import Q
 from .forms import Register_form
-import random
 
 '''
 You can't access the register route if you are already logged in. Also in case of invalid forms you need to 
@@ -99,7 +98,6 @@ Need to put a modal to confirm logout.
 def logout_page(request):
     if request.method == "POST":
         logout(request)
-        print("logged out")
         return HttpResponseRedirect("/")
 
 
@@ -115,14 +113,12 @@ def search_page(request):
     if request.method=='POST':
         search_query = request.POST['Search']
         flipkart_products = generate_flipkart_search(search_query)
-        flipkart_products= flipkart_products[:10]
+        flipkart_products= flipkart_products[:15]
         amazon_products = generate_amazon_search(search_query)
-        amazon_products= amazon_products[:10]
+        amazon_products= amazon_products[:15]
 
         products=amazon_products+flipkart_products
         products=sorter(products)
 
         return render(request, 'accounts/search_page.html',context={'products':products})
-        # flipkart_products = generate_flipkart_search(search_query)
-        # all_products = amazon_products.append(flipkart_products)
     return render(request, 'accounts/search_page.html',context={'products':[]})

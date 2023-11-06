@@ -1,0 +1,27 @@
+.search-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Quicksand','sans-serif';
+    border: 1px solid black;
+    padding:5px 20px;
+    border-radius: 100px;
+    width:-moz-fit-content;
+    width:fit-content;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.search-container input{
+    padding: 5px 10px;
+    border-radius:5px;
+    font-size: 1.5rem;
+    outline:none;
+    border: none;
+    width:50vw;
+}
+
+.wrapper{
+    padding: 10px;
+}

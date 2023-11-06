@@ -40,3 +40,15 @@ body{
     margin: 0;
     padding: 0;
 }
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap{
+    flex-wrap:wrap;
+}
+
+.content-between{
+    justify-content: space-between;
+}

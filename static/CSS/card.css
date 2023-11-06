@@ -1,0 +1,148 @@
+.box-border {
+    margin: 6px; 
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    width: calc(25vw - 30px);
+    min-width:230px;
+    box-sizing:border-box;
+}
+
+.card{
+    margin-top:10px;
+    margin-bottom:10px;
+    position:relative;
+    width: 100%;
+    box-sizing:border-box;
+}
+
+.top-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-logo img {
+    width: auto;
+    height:50px;
+    margin: 0; 
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+}
+
+.site-logo{
+    position: absolute;
+    top:5px;
+    left: 5px;
+    background-color: #ffffff;
+    border-radius: 18px;
+}
+  
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+    min-width: 80px;
+    background-color: #FDCC0D;
+    padding:5px 10px;
+    border-radius: 100px;
+    position: absolute;
+    right: 5px;
+    top:5px;
+}
+  
+.rating p {
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Quicksand','sans-serif';
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.rating i{
+    color:#ffffff;
+    font-size:1.4rem;
+}
+
+.Product-img{
+    width: calc(100% - 12px);
+    margin: auto;
+    height: auto;
+}
+
+.card-body{
+    margin-bottom: 5px;
+    padding-bottom: 0px;
+}
+.btn-container{
+    align-self: baseline;
+    margin-bottom: 20px;
+    padding: 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.button-33 {
+    background-color: #c2fbd7;
+    border-radius: 10px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Quicksand','sans-serif';
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+  
+.button-33:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+}
+
+/* CSS */
+.button-24 {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+  }
+  
+  .button-24:hover,
+  .button-24:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+  }
+  
+  .button-24:active {
+    opacity: .5;
+  }
