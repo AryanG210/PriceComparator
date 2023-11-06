@@ -15,3 +15,6 @@ def Home(request):
     images = Images.objects.all()
     context = {'user': name,'images':images} 
     return render(request,'home.html',context)
+
+def About(request):
+    return render(request,'about.html')
