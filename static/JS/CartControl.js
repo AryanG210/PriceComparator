@@ -29,13 +29,8 @@ function DeleteFromCart(csrf,id){
             'X-CSRFToken': csrf
         },
         success: function(response) {
-            console.log(response);
+            console.log(response)
+            location.reload()
         }
     });
-}
-function deleteAndRefresh(csrfToken, cartId) {
-    DeleteFromCart(csrfToken, cartId);
-    setTimeout(function() {
-        location.reload(); // Reload the current page
-    }, 1000); // Reload after 1 second (adjust as needed)
 }
