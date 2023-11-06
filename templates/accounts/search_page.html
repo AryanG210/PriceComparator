@@ -12,6 +12,59 @@
 {% endblock links %}
 
 {% block styles %}
+.cart-popup {
+    display: none;
+    position: fixed;
+    top: 0; /* Display at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f1f1f1;
+    padding: 10px; /* Reduce the padding to make it smaller */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 999;
+    width: 200px; /* Set the width to your desired smaller value */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Style the text in the popup */
+.cart-popup-content p {
+    font-size: 16px;
+    margin: 0;
+    padding: 10px;
+}
+
+/* Style the close (X) button */
+.close-popup {
+    position: absolute;
+    top: 5px;
+    right: 5px; /* Adjust the right position to make it smaller */
+    cursor: pointer;
+    font-size: 18px; /* Adjust the font size to make it smaller */
+    color: #333; /* Set the color for the close button */
+}
+
+
+
+.cart-popup-content {
+    text-align: center;
+}
+
+.close-popup {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px; /* Set the font size directly on the close-popup element */
+    color: #333; /* Set the color for the close button */
+}
+
+
+
+.close-popup:hover {
+    color: red; /* Change the color on hover */
+}
+
 {% endblock styles %}
 
 {% block content %}
@@ -58,12 +111,30 @@
             </div>
         </div>
     </div>
-    {% endfor %}
+</div>
+<div id="cartPopup" class="cart-popup">
+    <div class="cart-popup-content">
+        <span class="close-popup" onclick="closeCartPopup()">&times;</span>
+        <p>Item added to cart!</p>
+    </div>
 </div>
 </div>
 {% endblock content %}
 {% block js %}
 <script>
     console.log('working')
+    function showCartPopup() {
+        var popup = document.getElementById("cartPopup");
+        popup.style.display = "block";
+        setTimeout(function() {
+            popup.style.display = "none";
+        }, 2000); // Hide after 2 seconds (2000 milliseconds)
+    }
+
+    function closeCartPopup() {
+        var popup = document.getElementById("cartPopup");
+        popup.style.display = "none";
+    }
+
 </script>
 {% endblock js %}

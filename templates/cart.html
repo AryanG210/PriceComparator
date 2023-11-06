@@ -53,9 +53,9 @@
                     <button class="button-33" role="button" onclick="window.location.href='{{item.URL}}'">
                         Buy Now
                     </button>
-                    <button class="button-24" role="button"onClick="DeleteFromCart('{{csrf_token}}',{{item.cart_id}})">
+                    <button class="button-24" role="button" onclick="deleteAndRefresh('{{ csrf_token }}', {{ item.cart_id }})">
                         Delete
-                    </button> 
+                    </button>
                 </div>
             </div>
         </div>

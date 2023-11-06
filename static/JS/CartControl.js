@@ -29,7 +29,8 @@ function DeleteFromCart(csrf,id){
             'X-CSRFToken': csrf
         },
         success: function(response) {
-            console.log(response);
+            console.log(response)
+            location.reload()
         }
     });
 }
